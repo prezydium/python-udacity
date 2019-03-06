@@ -1,28 +1,27 @@
-import sys
 
 def party_planner(cookies, people):
     leftovers = None
     num_each = None
-    # TODO: Add a try-except block here to
-    #       make sure no ZeroDivisionError occurs.
+
     try:
 	    num_each = cookies // people
 	    leftovers = cookies % people
-    except ZeroDivisionError:
-	    print("Invite someone!")
+    except ZeroDivisionError as e:
+	    print("Invite someone to prevent: {}".format(e))
     finally:
         print("Party Time!")
     return(num_each, leftovers)
 
-# The main code block is below; do not edit this
 lets_party = 'y'
-while lets_party == 'y':
+while lets_party == "y":
+    cookies = 0
+    people = 0
     try:
         cookies = int(input("How many cookies are you baking? "))
         people = int(input("How many people are attending? "))
     except ValueError:
 	    print("You have entered something strange")
-        sys.exit(1)
+        
     cookies_each, leftovers = party_planner(cookies, people)
 
     if cookies_each:  # if cookies_each is not None
